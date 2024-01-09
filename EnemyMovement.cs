@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
         //enemy follows players position by subtracting its own position from players position, use normalize to prevent increased acceleration over greater distances
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+        //ratate to look at player
+        transform.LookAt(player.transform);
 
         if(transform.position.y < -10) {
             Destroy(gameObject);

@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
-    public int hitCounter = 3;
+    // public int hitCounter = 3;
     public GameObject projectilePrefab;
     public GameObject powerupIndicator;
     public bool hasPowerup = false;
+    //damage value is set to 1 in gui
+    public int dmgValue;
+    private GameManager gameManager;
 
     void Start()
     {
-        
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -50,16 +53,7 @@ public class PlayerController : MonoBehaviour
     //OnCollisionEnter if a non-trigger collider is involved in the collision
     private void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.CompareTag("Enemy")) {
-            hitCounter --;
-            // ** play damage sound
-            // ** remove from UI counter 
-            Debug.Log("OUCHIE T_T Hit Points at: " + hitCounter);
-        }
-
-        if (hitCounter == 0) {
-            Debug.Log("OK GAME OVER FOR REAL");
-            // ** play game over sound and fx
-            // ** restart/end game
+            gameManager.UpdateHealth(dmgValue);
         }
     }
 
