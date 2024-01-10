@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Button restartButton;
     private int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
-
-    private int playerHealth = 4;
+    private int playerHealth = 3;
 
     void Start()
     {
         isGameActive = true;
-
-        //start with Health: 4
+        //start with Health: 3
         healthText.text = "Health: " + playerHealth; 
         UpdateScore(0);
     }
@@ -31,15 +32,19 @@ public class GameManager : MonoBehaviour
     public void UpdateHealth(int damage) {
         playerHealth -= damage;
         healthText.text = "Health: " + playerHealth;      
-        if (playerHealth == 0) {
+        if (playerHealth <= 0) {
             healthText.text = "Game Over"; 
             GameOver();     
         }
     }
 
     public void GameOver() {
-        // restartButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
+    }
+
+   public void RestartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

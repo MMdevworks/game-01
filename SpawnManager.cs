@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    private GameManager gameManager;
     // Start is called before the first frame update
     public GameObject[] enemyPrefabs;
 
@@ -19,6 +20,8 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {   
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //** eventually refactor and move down to a new StartGame function after buttons added
         // Repeatedly call SpawnRandomEnemy function after a delay and at the given intervals
         InvokeRepeating("SpawnRandomEnemy", startDelay, spawnInterval);
         Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
@@ -30,10 +33,12 @@ public class SpawnManager : MonoBehaviour
     
     // Randomize the enemy index and spawn position Random.Range(x,y,z)
     void SpawnRandomEnemy(){
+        if(gameManager.isGameActive){
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         Instantiate(enemyPrefabs[enemyIndex], spawnPos,
         enemyPrefabs[enemyIndex].transform.rotation);
+        }
     }
 
     //method returns random pos
