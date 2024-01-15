@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     public float spawnPosZ = 20;
     private float startDelay = 2;
     private float spawnInterval = 1.5f;
+    private bool powerUpExisting;
 
     void Start()
     {   
@@ -24,11 +25,21 @@ public class SpawnManager : MonoBehaviour
         //** eventually refactor and move down to a new StartGame function after buttons added
         // Repeatedly call SpawnRandomEnemy function after a delay and at the given intervals
         InvokeRepeating("SpawnRandomEnemy", startDelay, spawnInterval);
-        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
+
 
     void Update()
     {
+        InstantiatePowerup();
+    }
+
+//if player health = 1, instantiate powerup, and destroy if not taken within 8 seconds
+    void InstantiatePowerup() {
+        if(gameManager.playerHealth == 1 && !powerUpExisting){
+        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        powerUpExisting = true;
+        }
     }
     
     // Randomize the enemy index and spawn position Random.Range(x,y,z)
