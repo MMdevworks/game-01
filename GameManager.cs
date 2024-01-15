@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
-    private int playerHealth = 3;
+    public int playerHealth = 3;
 
     void Start()
     {
@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour
             GameOver();     
         }
     }
+
+    public void AddHealth(int heal) {
+        playerHealth += heal;
+        healthText.text = "Health: " + playerHealth;      
+    }
+
+
 
     public void GameOver() {
         restartButton.gameObject.SetActive(true);

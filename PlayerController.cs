@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup = false;
     //damage value is set to 1 in gui
     public int dmgValue;
+    public int healValue;
     private GameManager gameManager;
 
     void Start()
@@ -67,18 +68,20 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("Powerup")){
             hasPowerup = true;
             //** play power up sound
-            powerupIndicator.gameObject.SetActive(true);
             Destroy(other.gameObject);
+            gameManager.AddHealth(healValue);
             //starts PowerupCoundown
-            StartCoroutine(PowerupCoundown());
+            //powerupIndicator.gameObject.SetActive(true);
+            // StartCoroutine(PowerupCoundown());
         }
     }
 
-    IEnumerator PowerupCoundown() {
-        yield return new WaitForSeconds(8);
-        hasPowerup = false;
-        powerupIndicator.gameObject.SetActive(false);
-    }
+    //show power indicator timer
+    // IEnumerator PowerupCoundown() {
+    //     yield return new WaitForSeconds(5);
+    //     hasPowerup = false;
+    //     powerupIndicator.gameObject.SetActive(false);
+    // }
 }
 
 

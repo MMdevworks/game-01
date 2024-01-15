@@ -11,11 +11,6 @@ public class HandleCollisions : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    void Update()
-    {
-        
-    }
-
     // Destroy game objects when they collide with eachother
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Enemy"){
