@@ -1,6 +1,8 @@
 # About
 A personal microgame utilizing Unity Real-Time Development platform and C#.
 
+This game is hosted on Unity Play, click below to try it out:
+
 [Play the Game](https://play.unity.com/mg/other/project-spooky)
 
 ## How to Play
