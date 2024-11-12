@@ -3,7 +3,7 @@ A personal microgame utilizing Unity Real-Time Development platform and C#.
 
 This game is hosted on Unity Play, click below to try it out:
 
-[Play the Game](https://play.unity.com/mg/other/project-spooky)
+[Play the Game](https://play.unity.com/en/games/96059ff4-6340-42b5-b6b1-f2171f4bc99e/project-spooky)
 
 ## How to Play
 Use WASD keys to move
